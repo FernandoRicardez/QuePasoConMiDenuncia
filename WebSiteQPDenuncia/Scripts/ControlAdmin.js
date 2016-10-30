@@ -41,20 +41,27 @@ function buscarDenuncia(folio, tipo) {
         //window.location.href("Index.aspx");
         //$('.fade').backGroundColor="transparent";
         $('#divHistoricos').empty();
-        for (var i = 0; i < datos_historicos.length; i++) {
-            var fecha = datos_historicos[i].fecha;
-            var dependiente = datos_historicos[i].dependiente;
-            var descripcion = datos_historicos[i].descripcion;
+        if (datos_historicos.length == 0) {
             $('#divHistoricos').append("<div class=\"row-fluid\" <div class=\"span4\" style=\"float:left;padding-left:20px;padding-bottom:20px\">" +
-                               " <div class=\"block\">" +
-                                  "  <h1>"+fecha+"</h1>"+
-                                   " <p>"+descripcion+"</p>"
-                                   +"<label>"+dependiente+"</label>"+
-                               " </div>"+
-                           " </div>");
-        }
-        $('#divHistoricos').append("</div>");
-    },
+                                   " <div class=\"block\">" +
+                                      "  <h1>" + "Denuncia no encontrada" + "</h1>" +
+                                   " </div>" +
+                               " </div>");
+        } else { 
+            for (var i = 0; i < datos_historicos.length; i++) {
+                var fecha = datos_historicos[i].fecha;
+                var dependiente = datos_historicos[i].dependiente;
+                var descripcion = datos_historicos[i].descripcion;
+                $('#divHistoricos').append("<div class=\"row-fluid\" <div class=\"span4\" style=\"float:left;padding-left:20px;padding-bottom:20px\">" +
+                                   " <div class=\"block\">" +
+                                      "  <h1>"+fecha+"</h1>"+
+                                       " <p style=\"text-size-adjust :auto\">"+descripcion+"</p>"
+                                       +"<label>"+dependiente+"</label>"+
+                                   " </div>"+
+                               " </div>");
+            }
+            $('#divHistoricos').append("</div>");
+        }},
     error: function (result) {
         alert('Error!');
     },
